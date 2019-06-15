@@ -10,14 +10,10 @@ data['platforms'] = []
 client = MongoClient('mongodb://192.168.99.101:27017')
 mydb = client["test"]
 mycol = mydb["pay"]
-# Issue the serverStatus command and print the results
-platforms =  mycol.find()
-l = list(platforms)
 
-for plat in l:
-	print(type(plat))
+platforms =  list(mycol.find())
+for plat in platforms:
 	plat.pop('_id',None)
-	print(plat)
 	data['platforms'].append(plat)
 
 with open('PAYPlatforms.json', 'w') as outfile:  
